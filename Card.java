@@ -1,5 +1,4 @@
 import java.util.Set;
-
 /**
  * Clas representing a card. It has two parameters the color and the value.
  */
