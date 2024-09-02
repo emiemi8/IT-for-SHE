@@ -1,11 +1,9 @@
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
 
 public class Deck {
     
-    LinkedList<Card> cards;
+    LinkedList<Card> cards = new LinkedList<>();
     
     public void initialise(){
         for (Suite suite: Suite.values()){
