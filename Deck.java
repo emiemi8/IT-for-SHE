@@ -1,6 +1,7 @@
 import java.util.Collections;
 import java.util.LinkedList;
 
+
 public class Deck {
     
     LinkedList<Card> cards = new LinkedList<>();
