@@ -1,9 +1,10 @@
 import java.util.Collections;
 import java.util.LinkedList;
 
+
 public class Deck {
     
-    LinkedList<Card> cards;
+    LinkedList<Card> cards = new LinkedList<>();
     
     public void initialise(){
         for (Suite suite: Suite.values()){

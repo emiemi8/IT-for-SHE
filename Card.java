@@ -3,7 +3,6 @@
  */
 class Card {
     String value;
-
     Suite color;
 
     Card(String value, Suite color){
@@ -18,6 +17,7 @@ class Card {
                 ", color=" + color +
                 '}';
     }
+
 }
 
 /**

@@ -1,39 +1,65 @@
-import java.util.Collections;
+
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
+
+    public static int sum = 0;
+    private static final Set<String> VALUES = Set.of("K", "Q", "J");
+    static LinkedList<Card> hand = new LinkedList<>();
+
     public static void main(String[] args) {
+        Deck myDeck = new Deck();
+        myDeck.initialise();
 
-        //TODO switch from using static methods to public methods from Deck class.
-        LinkedList<Card> deck = new LinkedList<>();
+        Card newCard = myDeck.hit();
+        hand.add(newCard);
 
-        initialiseDeck(deck);
+        System.out.print(newCard + " ");
+        System.out.println(countPoints(newCard));
+        System.out.println("Your hand: " + hand);
 
-        System.out.println(getRandomCard(deck));
 
-    }
+        Scanner inputScanner = new Scanner(System.in);
+        System.out.println("Type hit if want to hit");
+        String answer = inputScanner.nextLine();
 
-    private static Card getRandomCard(LinkedList<Card> deck) {
-        Collections.shuffle(deck);
-        return deck.pop();
-    }
 
-    private static void initialiseDeck(List<Card> deck) {
-        for (Suite suite: Suite.values()){
-            deck.add(new Card("2", suite));
-            deck.add(new Card("3", suite));
-            deck.add(new Card("4", suite));
-            deck.add(new Card("5", suite));
-            deck.add(new Card("6", suite));
-            deck.add(new Card("7", suite));
-            deck.add(new Card("8", suite));
-            deck.add(new Card("9", suite));
-            deck.add(new Card("10", suite));
-            deck.add(new Card("J", suite));
-            deck.add(new Card("Q", suite));
-            deck.add(new Card("K", suite));
-            deck.add(new Card("A", suite));
+        while (answer.equalsIgnoreCase("hit")) {
+            Card newCard1 = myDeck.hit();
+            hand.add(newCard1);
+
+            System.out.print(newCard1 + " ");
+            System.out.println(countPoints(newCard1));
+            System.out.println("Your hand: " + hand);
+
+            if(sum == 21){
+                System.out.println("Victory!");
+                return;
+            }
+            else if (sum >21){
+                System.out.println("Defeat...");
+                return;
+            }
+
+            System.out.println("Type hit if want to hit");
+            answer = inputScanner.nextLine();
         }
+
     }
+
+    public static String countPoints(Card card){
+        String valueOfCard = card.value;
+
+        if(VALUES.contains(valueOfCard)) {
+            sum= sum+10;
+        } else if (valueOfCard.equals("A")) {
+            sum= sum+11;
+        }
+        else{
+            sum= sum+Integer.parseInt(valueOfCard);
+        }
+        return "Sum = " + sum;
+        }
 }
